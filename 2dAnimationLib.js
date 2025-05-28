@@ -1,8 +1,21 @@
+// canvas
 let ctx;
 let canvas;
+
+// stroke
 let useStroke = true; // for noStroke()
 let currentStrokeWeight = 1;
 
+// animation
+let drawFn;
+
+// Text variables
+let currentFontSize = 16;
+let currentFontFamily = "sans-serif";
+let textAlignH = "start"; // start, center, end
+let textAlignV = "alphabetic"; // top, middle, bottom, alphabetic
+
+// create canvas for user
 export function createCanvas(w, h) {
   canvas = document.querySelector("#canvas");
   canvas.width = w;
@@ -94,13 +107,43 @@ export function strokeWeight(weight) {
   ctx.lineWidth = weight;
 }
 
+// random color generator
+export function randomColor(alpha = 1) {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+// text
+
+export function text(str, x, y) {
+  ctx.font = `${currentFontSize}px ${currentFontFamily}`;
+  ctx.textAlign = textAlignH;
+  ctx.textBaseline = textAlignV;
+  ctx.fillText(str, x, y);
+}
+
+export function textSize(size) {
+  currentFontSize = size;
+}
+
+export function textFont(fontName) {
+  currentFontFamily = fontName;
+}
+
+export function textAlign(h, v = "alphabetic") {
+  textAlignH = h; // "left", "center", "right" → "start", "center", "end"
+  textAlignV = v; // "top", "middle", "bottom", "alphabetic"
+}
 // transformation
 
-//
+// save the current canvas drawing state
 export function push() {
   ctx.save();
 }
 
+// restore the canvas state to what it was before push
 export function pop() {
   ctx.restore();
 }
@@ -116,6 +159,7 @@ export function rotate(angle) {
   ctx.rotate(angle); // angle in radian
 }
 
+// scale the canvas not shape eg scale(1,5)
 export function scale(sx, sy) {
   ctx.scale(sx, sy);
 }
@@ -129,3 +173,17 @@ document.addEventListener("mousemove", (e) => {
   mouseX = e.clientX - rect.left;
   mouseY = e.clientY - rect.top;
 });
+
+// animation
+
+export function startLoop(fn) {
+  drawFn = fn;
+  requestAnimationFrame(loop);
+}
+
+function loop() {
+  if (typeof drawFn === "function") {
+    drawFn();
+    requestAnimationFrame(loop);
+  }
+}

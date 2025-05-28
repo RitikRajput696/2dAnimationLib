@@ -41,33 +41,45 @@ import {
   translate,
   rotate,
   scale,
+  startLoop,
+  noStroke,
+  stroke,
+  strokeWeight,
+  text,
+  textAlign,
+  textSize,
+  textFont,
+  randomColor,
 } from "./2dAnimationLib.js"; // adjust this path to match your setup
 
 createCanvas(window.innerWidth, window.innerHeight);
 
+let x = 0;
+let speed = 2;
 function draw() {
   background("white");
+  textFont("georgia");
+  textSize(20);
+  fill(randomColor());
+  text("hello world", x, 300);
+  x = x + speed;
 
-  push(); // Save canvas state
-  translate(window.innerWidth / 2, window.innerHeight / 2); // Move origin to center
-  scale(2);
-  rotate(Math.PI / 4); // Rotate 45 degrees (in radians)
-  fill("lightblue");
-  rect(-50, -25, 100, 50); // Draw centered rectangle
-  pop(); // Restore canvas state
-
-  push(); // Save canvas state
-  translate(window.innerWidth / 2, window.innerHeight / 2); // Move origin to center
-  // scale(2);
-  rotate(Math.PI / 4); // Rotate 45 degrees (in radians)
-  fill("lightblue");
-  rect(-50, -100, -50, -200); // Draw centered rectangle
-  pop(); // Restore canvas state
+  if (x > window.innerWidth - 100 || x <= 0) {
+    speed = -speed;
+  }
 }
 
-function animate() {
-  draw();
-  requestAnimationFrame(animate);
-}
-// draw(); // Call once (not animated)
-animate();
+// let x = 0;
+
+// function draw() {
+//   background("white");
+
+//   fill("blue");
+//   textSize(24);
+//   text("Moving Text →", x, 100);
+
+//   x += 2;
+//   if (x > 400) x = -100;
+// }
+
+startLoop(draw);
