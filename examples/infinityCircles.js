@@ -5,15 +5,15 @@ import {
   fill,
   mouseX,
   mouseY,
-} from "./2dAnimationLib.js";
+  startLoop,
+} from "../src/2dAnimationLib.js";
 
-createCanvas(500, 500);
-background("#e5c891");
+createCanvas(800, 800);
+background("black");
 
-function Animate() {
-  requestAnimationFrame(Animate);
-
-  fill("yellow");
+function draw() {
+  fill("#dbdbdb");
   circle(mouseX, mouseY, 100);
 }
-Animate();
+
+startLoop(draw);
