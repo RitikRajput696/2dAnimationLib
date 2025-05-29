@@ -101,7 +101,7 @@ git clone https://github.com/RitikRajput696/2dAnimationLib
 
 ### 1. Bouncing Balls
 
-<video src="./examples/vids/bouncyballs.mp4" controls autoplay muted loop></video>
+![100 bouncing ball animation](./examples/vids/bouncingball.gif)
 
 ```js
 import {
@@ -180,7 +180,7 @@ startLoop(draw);
 
 ### 3. Infinity circles
 
-<video src="./examples/vids/infinityCircles.mp4" controls autoplay muted loop> </video>
+![infinity circles](./examples/vids/infinityCircles.gif)
 
 ```js
 createCanvas(800, 800);
