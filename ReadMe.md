@@ -27,23 +27,32 @@ git clone https://github.com/RitikRajput696/2dAnimationLib
   </head>
   <body>
     <canvas id="canvas"></canvas>
-    <script type="module" src="2dAnimationLib.js"></script>
     <script type="module">
-      import { createCanvas, startLoop, rect } from "./src/2dAnimationLib.js";
-
-      // creating our drawing canvas 600x400
-      createCanvas(600, 400);
-
-      let x = 0;
+      import {
+        createCanvas,
+        startLoop,
+        background,
+        push,
+        translate,
+        rotate,
+        fill,
+        rect,
+        pop,
+      } from "../src/2dAnimationLib.js";
+      createCanvas(window.innerWidth, window.innerHeight);
+      let angle = 0;
 
       function draw() {
         background("white");
-        fill("blue");
-        rect(x, 100, 50, 50);
-        x += 1;
+        push();
+        translate(window.innerWidth / 2, window.innerHeight / 2);
+        rotate(angle);
+        fill("green");
+        rect(-100, -100, 100, 100);
+        pop();
+        angle += 0.05;
       }
 
-      // function to animate, it runs at 60fps
       startLoop(draw);
     </script>
   </body>
