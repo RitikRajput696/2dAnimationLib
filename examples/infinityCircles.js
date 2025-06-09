@@ -9,8 +9,8 @@ import {
 } from "../src/2dAnimationLib.js";
 
 createCanvas(800, 800);
-background("black");
 
+background("black");
 function draw() {
   fill("#dbdbdb");
   circle(mouseX, mouseY, 100);

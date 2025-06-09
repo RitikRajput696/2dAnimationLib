@@ -30,7 +30,6 @@ let ySpeed = 2;
 
 function draw() {
   background("white");
-
   for (let i = 0; i < circleArray.length; i++) {
     fill(circleArray[i].color);
     circle(
@@ -48,5 +47,6 @@ function draw() {
     }
   }
 }
+// draw();
 
 startLoop(draw);
